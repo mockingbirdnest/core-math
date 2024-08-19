@@ -93,7 +93,7 @@ float cr_log1pf(float x) {
   } else {
     if(__builtin_expect(ux>=0xbf800000u||ax>=0x7f800000u, 0)) return as_special(x);
     b64u64_u t = {.f = z + 1};
-    int e = t.u>>52;
+    int e = t.u|(0x7F800000ul);
     unsigned long m52 = t.u&(~0ul>>12);
     unsigned j = (t.u >> (52-5))&31;
     e -= 0x3ff;
