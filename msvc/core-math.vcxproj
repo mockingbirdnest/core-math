@@ -16,5 +16,7 @@
     <ClCompile Include="..\src\binary64\sin\sin.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\binary64\cos\cos.h" />
+    <ClInclude Include="..\src\binary64\sin\sin.h" />
   </ItemGroup>
 </Project>
