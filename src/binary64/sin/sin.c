@@ -26,10 +26,10 @@ SOFTWARE.
 
 // This code has been adapted to C++ and MSVC.
 
+#include "core-math/sin.h"
+
 /* stdio.h and stdlib.h are needed in case the rounding test of the accurate
    step fails, to print the corresponding input and exit. */
-#include "core-math/sin.hpp"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -41,6 +41,8 @@ SOFTWARE.
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic ignored "-Wunknown-pragmas"
 #endif
+
+#pragma STDC FENV_ACCESS ON
 
 #ifndef __builtin_clzl
 #define __builtin_clzl(x) __lzcnt64(x)
