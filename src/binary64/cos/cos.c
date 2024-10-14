@@ -28,7 +28,7 @@ SOFTWARE.
 
 /* stdio.h and stdlib.h are needed in case the rounding test of the accurate
    step fails, to print the corresponding input and exit. */
-#include "functions/cos.hpp"
+#include "core-math/cos.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,29 +36,29 @@ SOFTWARE.
 #include <fenv.h>
 
 #include "absl/numeric/int128.h"
-#include "base/macros.hpp"  // 🧙 For PRINCIPIA_COMPILER_MSVC.
-#include "numerics/fma.hpp"
 
 // Warning: clang also defines __GNUC__
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic ignored "-Wunknown-pragmas"
 #endif
 
-#if PRINCIPIA_COMPILER_MSVC
+#ifndef __builtin_clzl
 #define __builtin_clzl(x) __lzcnt64(x)
-#define __builtin_fma(x, y, z) \
-  principia::numerics::_fma::FusedMultiplyAdd(x, y, z)
 #endif
+#ifndef __builtin_fma
+#define __builtin_fma(x, y, z) std::fma(x, y, z)
+#endif
+#ifndef __builtin_expect
 #define __builtin_expect(x, y) x
+#endif
+#ifndef __builtin_fabs
 #define __builtin_fabs(x) std::abs(x)
+#endif
+#ifndef __builtin_floor
 #define __builtin_floor(x) std::floor(x)
+#endif
 
 /******************** code copied from dint.h and pow.[ch] *******************/
-
-namespace principia {
-namespace functions {
-namespace _cos {
-namespace internal {
 
 typedef absl::uint128 u128;
 
@@ -1619,7 +1619,7 @@ set_dd (double *h, double *l, uint64_t c1, uint64_t c0)
 static int
 reduce_fast (double *h, double *l, double x, double *err1)
 {
-  if (__builtin_expect(x <= 0x1.921fb54442d17p+2, 1)) [[likely]] // x < 2*pi
+  if (__builtin_expect(x <= 0x1.921fb54442d17p+2, 1)) // x < 2*pi
     {
       /* | CH+CL - 1/(2pi) | < 2^-110.523 */
 #define CH 0x1.45f306dc9c883p-3
@@ -2017,7 +2017,7 @@ cr_cos (double x)
   b64u64_u t = {.f = x};
   int e = (t.u >> 52) & 0x7ff;
 
-  if (__builtin_expect (e == 0x7ff, 0)) [[unlikely]] /* NaN, +Inf and -Inf. */
+  if (__builtin_expect (e == 0x7ff, 0)) /* NaN, +Inf and -Inf. */
     {
       t.u = ~0ull;
       return t.f;
@@ -2052,16 +2052,3 @@ cr_cos (double x)
 
   return cos_accurate (t.f);
 }
-
-}  // namespace internal
-}  // namespace _cos
-}  // namespace functions
-}  // namespace principia
-
-#if PRINCIPIA_COMPILER_MSVC
-#undef __builtin_clzl
-#undef __builtin_fma
-#endif
-#undef __builtin_expect
-#undef __builtin_fabs
-#undef __builtin_floor
