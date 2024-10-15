@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ '*' ]
+  workflow_dispatch:
+
+env:
+  PRINCIPIA_HEADERS_CORE_MATH: include
+  PRINCIPIA_MSVC_CORE_MATH: msvc
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+        matrix:
+          configuration: [Debug, Release]
+    steps:
+    - name: Checkout source files
+      uses: actions/checkout@v3
+
+    - name: Initialize build environment
+      uses: mockingbirdnest/actions/windows/initialize_build@main
+      with:
+        configuration: ${{ matrix.configuration }}
+
+    - name: Download abseil artifact
+      uses: mockingbirdnest/actions/windows/download_artifact@main
+      with:
+        name: abseil-cpp
+        configuration: ${{ matrix.configuration }}
+        directory: ../Google
+
+    - name: Rebuild ${{ matrix.configuration }}
+      uses: mockingbirdnest/actions/windows/rebuild@main
+      with:
+        configuration: ${{ matrix.configuration }}
+        solution_directory: ${{ env.PRINCIPIA_MSVC_CORE_MATH }}
+
+    - name: Upload artifact
+      uses: mockingbirdnest/actions/windows/upload_artifact@main
+      with:
+        name: core-math
+        configuration: ${{ matrix.configuration }}
+        headers_directory: ${{ env.PRINCIPIA_HEADERS_CORE_MATH }}
+        solution_directory: ${{ env.PRINCIPIA_MSVC_CORE_MATH }}
