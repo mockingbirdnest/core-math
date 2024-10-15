@@ -24,7 +24,7 @@
     <ClCompile Include="..\src\binary64\sin\sin.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\cos.h" />
-    <ClInclude Include="..\include\sin.h" />
+    <ClInclude Include="..\include\core-math\cos.h" />
+    <ClInclude Include="..\include\core-math\sin.h" />
   </ItemGroup>
 </Project>

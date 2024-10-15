@@ -23,10 +23,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\cos.h">
+    <ClInclude Include="..\include\core-math\cos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\sin.h">
+    <ClInclude Include="..\include\core-math\sin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
