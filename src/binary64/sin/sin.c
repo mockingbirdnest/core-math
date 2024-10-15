@@ -26,7 +26,7 @@ SOFTWARE.
 
 // This code has been adapted to C++ and MSVC.
 
-#include "sin.h"
+#include "core-math/sin.h"
 
 /* stdio.h and stdlib.h are needed in case the rounding test of the accurate
    step fails, to print the corresponding input and exit. */
