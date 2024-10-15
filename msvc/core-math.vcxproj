@@ -10,7 +10,15 @@
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
   </PropertyGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="google_abseil-cpp.props" />
+  </ImportGroup>
   <Import Project="$(SolutionDir)core-math.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <CompileAs>CompileAsCpp</CompileAs>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\binary64\cos\cos.c" />
     <ClCompile Include="..\src\binary64\sin\sin.c" />

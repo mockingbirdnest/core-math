@@ -26,7 +26,7 @@ SOFTWARE.
 
 // This code has been adapted to C++ and MSVC.
 
-#include "core-math/cos.h"
+#include "cos.h"
 
 /* stdio.h and stdlib.h are needed in case the rounding test of the accurate
    step fails, to print the corresponding input and exit. */
@@ -34,6 +34,8 @@ SOFTWARE.
 #include <stdlib.h>
 #include <stdint.h>
 #include <fenv.h>
+
+#include <cmath>
 
 #include "absl/numeric/int128.h"
 
