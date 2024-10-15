@@ -31,6 +31,7 @@ jobs:
       with:
         name: abseil-cpp
         configuration: ${{ matrix.configuration }}
+        directory: Google
 
     - name: Rebuild ${{ matrix.configuration }}
       uses: mockingbirdnest/actions/windows/rebuild@main
