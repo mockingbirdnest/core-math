@@ -2,7 +2,7 @@ UNAME_S := $(shell uname -s)
 
 CXX              := clang++
 COMPILER_OPTIONS := \
-	-std=c++1z -stdlib=libc++ -O3 -g                           \
+	-std=c++20 -stdlib=libc++ -O3 -g                           \
 	-fPIC -fexceptions -ferror-limit=1 -fno-omit-frame-pointer \
 	-Wall -Wpedantic -Wno-deprecated -Wno-gnu-anonymous-struct \
 	-DNDEBUG -Iinclude -Ideps/abseil-cpp
