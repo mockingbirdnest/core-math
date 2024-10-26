@@ -4,7 +4,7 @@ CXX              := clang++
 COMPILER_OPTIONS := \
 	-std=c++1z -stdlib=libc++ -O3 -g                           \
 	-fPIC -fexceptions -ferror-limit=1 -fno-omit-frame-pointer \
-	-Wall -Wpedantic                                           \
+	-Wall -Wpedantic -Wno-deprecated -Wno-gnu-anonymous-struct \
 	-DNDEBUG -Iinclude -Ideps/abseil-cpp
 
 LIBRARY_TRANSLATION_UNITS := \

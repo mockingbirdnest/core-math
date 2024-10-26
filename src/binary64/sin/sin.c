@@ -46,6 +46,7 @@ SOFTWARE.
 
 #pragma STDC FENV_ACCESS ON
 
+#if defined(_MSC_VER)
 #ifndef __builtin_clzl
 #define __builtin_clzl(x) __lzcnt64(x)
 #endif
@@ -60,6 +61,7 @@ SOFTWARE.
 #endif
 #ifndef __builtin_floor
 #define __builtin_floor(x) std::floor(x)
+#endif
 #endif
 
 /******************** code copied from dint.h and pow.[ch] *******************/
