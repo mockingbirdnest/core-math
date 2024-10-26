@@ -5,7 +5,7 @@ COMPILER_OPTIONS := \
 	-std=c++1z -stdlib=libc++ -O3 -g                           \
 	-fPIC -fexceptions -ferror-limit=1 -fno-omit-frame-pointer \
 	-Wall -Wpedantic                                           \
-	-DNDEBUG -Iinclude -I../deps
+	-DNDEBUG -Iinclude -I../deps/abseil-cpp
 
 LIBRARY_TRANSLATION_UNITS := \
 	src/binary64/cos/cos.c \
