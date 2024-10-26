@@ -8,9 +8,9 @@ COMPILER_OPTIONS := \
 	-DNDEBUG -Iinclude
 
 LIBRARY_TRANSLATION_UNITS := \
-	src/binary64/cos/cos.cc \
-	src/binary64/sin/sin.cc
-LIBRARY_OBJECTS := $(LIBRARY_TRANSLATION_UNITS:.cc=.o)
+	src/binary64/cos/cos.c \
+	src/binary64/sin/sin.c
+LIBRARY_OBJECTS := $(LIBRARY_TRANSLATION_UNITS:.c=.o)
 
 ifeq ($(UNAME_S),Darwin)
     COMPILER_OPTIONS += -mmacosx-version-min=10.11 -arch x86_64
@@ -22,5 +22,5 @@ all: $(LIBRARY_OBJECTS)
 clean:
 	rm -f src/*/*/*.o
 
-%.o: %.cc
+%.o: %.c
 	$(CXX) -c -o $@ $< $(COMPILER_OPTIONS)
