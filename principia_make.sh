@@ -1,1 +1,1 @@
-make -d
+make
