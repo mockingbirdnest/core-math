@@ -35,6 +35,7 @@ SOFTWARE.
 #include <stdint.h>
 #include <fenv.h>
 
+#include <bit>
 #include <cmath>
 
 #include "absl/numeric/int128.h"
@@ -48,7 +49,7 @@ SOFTWARE.
 
 #if defined(_MSC_VER)
 #ifndef __builtin_clzl
-#define __builtin_clzl(x) __lzcnt64(x)
+#define __builtin_clzl(x) std::countl_zero(x)
 #endif
 #ifndef __builtin_fma
 #define __builtin_fma(x, y, z) std::fma(x, y, z)
