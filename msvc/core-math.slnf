@@ -1,0 +1,8 @@
+{
+  "solution": {
+    "path": "core-math.sln",
+    "projects": [
+      "core-math.vcxproj"
+    ]
+  }
+}

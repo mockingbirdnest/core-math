@@ -10,6 +10,7 @@ on:
 env:
   PRINCIPIA_HEADERS_CORE_MATH: include
   PRINCIPIA_MSVC_CORE_MATH: msvc
+  PRINCIPIA_SOLUTION_CORE_MATH: msvc/core-math.slnf
 
 jobs:
   build:
@@ -37,7 +38,7 @@ jobs:
       uses: mockingbirdnest/actions/windows/rebuild@main
       with:
         configuration: ${{ matrix.configuration }}
-        solution_directory: ${{ env.PRINCIPIA_MSVC_CORE_MATH }}
+        solution_glob: ${{ env.PRINCIPIA_MSVC_CORE_MATH }}
 
     - name: Upload artifact
       uses: mockingbirdnest/actions/windows/upload_artifact@main
