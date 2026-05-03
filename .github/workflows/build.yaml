@@ -38,7 +38,7 @@ jobs:
       uses: mockingbirdnest/actions/windows/rebuild@main
       with:
         configuration: ${{ matrix.configuration }}
-        solution_glob: ${{ env.PRINCIPIA_MSVC_CORE_MATH }}
+        solution_glob: ${{ env.PRINCIPIA_SOLUTION_CORE_MATH }}
 
     - name: Upload artifact
       uses: mockingbirdnest/actions/windows/upload_artifact@main
