@@ -5,7 +5,7 @@ COMPILER_OPTIONS := \
 	-std=c++20 -stdlib=libc++ -O3 -g                           \
 	-fPIC -fexceptions -ferror-limit=1 -fno-omit-frame-pointer \
 	-Wall -Wpedantic -Wno-deprecated -Wno-gnu-anonymous-struct \
-	-DNDEBUG -Iinclude -Ideps/abseil-cpp
+	-DNDEBUG -Iinclude -Ideps/abseil-cpp/install/include
 
 LIBRARY_TRANSLATION_UNITS := \
 	src/binary64/cos/cos.c \
